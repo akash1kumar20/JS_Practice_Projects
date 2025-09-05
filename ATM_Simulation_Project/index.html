@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATM Simulation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="atm-container">
+      <!-- Login Screen -->
+      <div id="loginScreen">
+        <h2>ATM Login</h2>
+        <input
+          type="number"
+          id="pinInput"
+          placeholder="Enter 4-digit PIN"
+          min="0"
+          max="9999"
+          oninput="limitInputLength(this)"
+        />
+        <br />
+        <button id="loginBtn" onclick="pinSubmission()">Login</button>
+        <p class="message" id="loginMessage"></p>
+      </div>
+
+      <!-- ATM Menu Screen -->
+      <div id="atmMenu" class="hidden">
+        <h2>Welcome to ATM</h2>
+        <input
+          type="number"
+          placeholder="Enter the amount here..."
+          id="enterAmount"
+          hidden
+          class="entAmt"
+        />
+        <button
+          id="add_withdraw_btn"
+          hidden
+          onclick="amountChangingProcess()"
+        ></button>
+        <button id="checkBalanceBtn" onclick="checkBalance()">
+          Check Balance
+        </button>
+        <button id="depositBtn" onclick="openForAddAmt()">Deposit Money</button>
+        <button id="withdrawBtn" onclick="openForwithdrawAmt()">
+          Withdraw Money
+        </button>
+        <button id="cancelBtn" hidden onclick="closeEntAmtPanel()">
+          Cancel
+        </button>
+        <button id="exitBtn" onclick="logoutFn()">Exit</button>
+        <p class="message" id="atmMessage"></p>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
