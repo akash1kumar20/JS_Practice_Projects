@@ -3,10 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To_Do_List</title>
+    <title>To-Do List</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="container">
+      <h1>📝 To-Do List</h1>
+      <p id="theme" class="themeBtn" onclick="toggleTheme()"></p>
+      <div class="input-section">
+        <input type="text" id="taskInput" placeholder="Enter your task..." />
+        <button id="addTaskBtn" onclick="taskAddingFn()">Add Task</button>
+        <button id="editTaskBtn" onclick="editAddingFn()">Edit Task</button>
+      </div>
+
+      <span class="toggleText" id="spanText">
+        Click on ⏳ to Mark Pending : Click on ✔ to Mark Complete
+      </span>
+      <ul id="taskList"></ul>
+
+      <div class="filterSection" id="filters">
+        <select name="filter" id="filterTask" required>
+          <option value="both" hidden>Show only</option>
+          <option value="both">All Tasks</option>
+          <option value="true">Completed Tasks</option>
+          <option value="false">Pending Tasks</option>
+        </select>
+        <button onclick="filterTask()">Show</button>
+      </div>
+
+      <button id="clearAllBtn" class="clear-btn" onclick="deleteAllTask()">
+        Clear All
+      </button>
+    </div>
     <script src="javascript.js"></script>
   </body>
 </html>

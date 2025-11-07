@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.4s ease;
+}
+
+.container {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input section */
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#addTaskBtn {
+  padding: 10px 15px;
+  background: #4cafef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#editTaskBtn {
+  padding: 10px 15px;
+  background: #4cafef;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: none;
+}
+
+#addTaskBtn:hover {
+  background: #3498db;
+}
+
+/* Task list */
+#taskList {
+  list-style: none;
+}
+
+#taskList li {
+  background: #f9fafb;
+  padding: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #e5e7eb;
+  transition: background 0.3s;
+}
+
+#taskList li.completed {
+  text-decoration: line-through;
+  background: #d1fae5;
+  color: #555;
+}
+
+li button {
+  background: transparent;
+  border: none;
+  color: #ff5e5e;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Clear all button */
+.clear-btn {
+  background: #ff5e5e;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: none;
+}
+
+.clear-btn:hover {
+  background: #e63946;
+}
+
+/* taskStatus */
+.completed {
+  background-color: green;
+  color: white;
+  padding: 4px;
+  border-radius: 12%;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.completed:hover {
+  cursor: pointer;
+}
+
+.pending {
+  background-color: yellow;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.pending:hover {
+  cursor: pointer;
+}
+
+.tick {
+  color: yellow;
+  font-weight: bolder;
+  font-size: 19px;
+}
+.tick:hover {
+  scale: 1.1;
+  font-weight: bolder;
+}
+
+.cross {
+  color: green;
+  font-weight: bolder;
+  font-size: 19px;
+}
+.cross:hover {
+  scale: 1.1;
+  font-weight: bolder;
+}
+
+.buttonSet {
+  display: flex;
+  gap: 1rem;
+}
+
+.crossButton {
+  font-weight: bolder;
+  font-size: 19px;
+}
+.crossButton:hover {
+  scale: 1.1;
+  font-weight: bolder;
+}
+
+.toggleText {
+  font-size: small;
+  padding: 4px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  font-weight: 400px;
+  margin-left: 5px;
+  display: none;
+}
+
+.filterSection {
+  padding-left: 10px;
+  display: none;
+  margin-top: 1rem;
+}
+
+select {
+  border-radius: 10px;
+  padding: 10px;
+  width: 60%;
+}
+.filterSection button {
+  border-radius: 10px;
+  padding: 10px;
+  width: 30%;
+  margin-left: 5px;
+  font-weight: bold;
+  background-color: #ff5e5e;
+  color: white;
+}
+
+.themeBtn {
+  text-align: right;
+  font-size: larger;
+  font-weight: 700;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
