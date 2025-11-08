@@ -4,20 +4,27 @@ displayTask();
 
 // to add task
 function taskAddingFn() {
-  let taskObj = {
+  const inputEl = document.getElementById("taskInput");
+  const text = inputEl.value.trim();
+  if (!text) return alert("Please enter a task.");
+
+  const taskObj = {
     id: Date.now(),
-    taskAdd: document.getElementById("taskInput").value,
+    taskAdd: text,
     date: new Date().toLocaleDateString(),
     completed: false,
   };
 
   taskObjArr.push(taskObj);
   localStorage.setItem("taskAdded", JSON.stringify(taskObjArr));
+  inputEl.value = "";
   displayTask();
 }
 
 // to display task
 function displayTask() {
+  taskObjArr =
+    JSON.parse(localStorage.getItem("taskAdded")) || taskObjArr || [];
   const taskList = document.getElementById("taskList");
   taskList.innerHTML = "";
 
@@ -38,22 +45,34 @@ function displayTask() {
 
     filterTaskArr.forEach((task, i) => {
       const li = document.createElement("li");
-      li.innerHTML = ` <p class="${
-        task.completed ? "completed" : "pending"
-      }" ondblclick='editTask(${task.id})'>
-    <span >
-        ${i + 1} || ${task.date} || ${task.taskAdd}
-    </span>
-    <span class='buttonSet'>
-        <button onclick = 'taskCompleted(${task.id})' class="${
-        task.completed ? "tick" : "cross"
-      }"> ${task.completed ? `⏳` : `✔`}</button>
-        <button onclick = 'taskDelete(${
-          task.id
-        })' class="crossButton">X</button>
-     </span>
-    </p>
-      `;
+
+      const p = document.createElement("p");
+      p.className = task.completed ? "completed" : "pending";
+      p.ondblclick = () => editTask(task.id);
+
+      const left = document.createElement("span");
+      left.textContent = `${i + 1} || ${task.date} || ${task.taskAdd}`;
+
+      const btnSet = document.createElement("span");
+      btnSet.className = "buttonSet";
+
+      const toggleBtn = document.createElement("button");
+      toggleBtn.className = task.completed ? "tick" : "cross";
+      toggleBtn.type = "button";
+      toggleBtn.textContent = task.completed ? "⏳" : "✔";
+      toggleBtn.onclick = () => taskCompleted(task.id);
+
+      const delBtn = document.createElement("button");
+      delBtn.className = "crossButton";
+      delBtn.type = "button";
+      delBtn.textContent = "X";
+      delBtn.onclick = () => taskDelete(task.id);
+
+      btnSet.appendChild(toggleBtn);
+      btnSet.appendChild(delBtn);
+      p.appendChild(left);
+      p.appendChild(btnSet);
+      li.appendChild(p);
       taskList.appendChild(li);
     });
   }
@@ -77,10 +96,10 @@ function deleteBtnToggle() {
   }
 }
 function deleteAllTask() {
-  localStorage.clear();
-  location.reload();
+  localStorage.removeItem("taskAdded");
+  taskObjArr = [];
+  displayTask();
 }
-
 //to delete particular task
 function taskDelete(id) {
   taskObjArr = taskObjArr.filter((task) => task.id !== id);
@@ -144,7 +163,9 @@ function editAddingFn() {
     return task;
   });
   localStorage.setItem("taskAdded", JSON.stringify(taskObjArr));
+  displayTask();
+  currendEditId = null;
+  document.getElementById("taskInput").value = "";
   document.getElementById("addTaskBtn").style.display = "block";
   document.getElementById("editTaskBtn").style.display = "none";
-  displayTask();
 }
